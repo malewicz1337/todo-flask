@@ -1,9 +1,8 @@
 from datetime import datetime
 
+from app.extensions import db
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column
-
-from ..extensions import db
 
 
 class Task(db.Model):

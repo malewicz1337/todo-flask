@@ -1,8 +1,7 @@
+from app.extensions import db
+from app.tasks.models import Task
+from app.tasks.schemas import task_schema, tasks_schema
 from flask import Blueprint, jsonify, request
-
-from ..extensions import db
-from .models import Task
-from .schemas import task_schema, tasks_schema
 
 task_bp = Blueprint("tasks", __name__, url_prefix="/tasks")
 
