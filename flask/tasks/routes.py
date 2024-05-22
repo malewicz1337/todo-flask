@@ -1,10 +1,15 @@
 from flask import Blueprint, jsonify, request
 
-from app import db
-from models import Task
-from schemas import task_schema, tasks_schema
+from ..extensions import db
+from .models import Task
+from .schemas import task_schema, tasks_schema
 
-task_bp = Blueprint("tasks", __name__)
+task_bp = Blueprint("tasks", __name__, url_prefix="/tasks")
+
+
+@task_bp.route("/test", methods=["GET"])
+def test():
+    return "<p>Hello, World!</p>"
 
 
 @task_bp.route("/", methods=["POST"])
