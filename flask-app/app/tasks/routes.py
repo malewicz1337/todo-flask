@@ -34,13 +34,13 @@ def get_tasks():
 
 @task_bp.route("/<int:id>", methods=["GET"])
 def get_task(id):
-    task = Task.query.get_or_404(id)
+    task = db.session.get(Task, id)
     return task_schema.jsonify(task)
 
 
 @task_bp.route("/<int:id>", methods=["PUT"])
 def update_task(id):
-    task = Task.query.get_or_404(id)
+    task = db.session.get(Task, id)
     title = request.json.get("title")
     description = request.json.get("description")
 
@@ -55,7 +55,7 @@ def update_task(id):
 
 @task_bp.route("/<int:id>", methods=["DELETE"])
 def delete_task(id):
-    task = Task.query.get_or_404(id)
+    task = db.session.get(Task, id)
     db.session.delete(task)
     db.session.commit()
     return jsonify({"message": "Task deleted successfully"})

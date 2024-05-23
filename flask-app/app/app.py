@@ -15,8 +15,4 @@ def create_app():
 
     app.register_blueprint(task_bp)
 
-    @app.route("/")
-    def home():
-        return "Hello, World!"
-
     return app
