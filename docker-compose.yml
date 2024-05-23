@@ -15,7 +15,7 @@ services:
 
   flask:
     build:
-      context: ./flask
+      context: ./flask-app
       dockerfile: Dockerfile
     environment:
       FLASK_ENV: development
