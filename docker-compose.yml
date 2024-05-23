@@ -20,7 +20,7 @@ services:
     environment:
       FLASK_ENV: development
       MYSQL_HOST: mysql
-      MYSQL_DATABASE: todo_bd
+      MYSQL_DATABASE: todo_db
       MYSQL_USER: user
       MYSQL_PASSWORD: password
     volumes:

@@ -9,5 +9,4 @@ class Base(DeclarativeBase):
 
 db = SQLAlchemy(model_class=Base)
 
-
 ma = Marshmallow()
