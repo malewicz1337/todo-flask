@@ -10,6 +10,7 @@ task_bp = Blueprint("tasks", __name__, url_prefix="/tasks")
 
 @task_bp.route("/", methods=["POST"])
 def add_task():
+    """Create a new task"""
     title = request.json.get("title")
     description = request.json.get("description")
 
@@ -21,7 +22,7 @@ def add_task():
     try:
         db.session.add(new_task)
         db.session.commit()
-        return task_schema.jsonify(new_task), 201
+        return task_schema.jsonify(new_task), 200
     except Exception as e:
         db.session.rollback()
         return jsonify({"error": str(e)}), 500
@@ -29,12 +30,14 @@ def add_task():
 
 @task_bp.route("/", methods=["GET"])
 def get_tasks():
+    """List all tasks"""
     tasks = Task.query.all()
     return tasks_schema.jsonify(tasks)
 
 
 @task_bp.route("/<int:id>", methods=["GET"])
 def get_task(id):
+    """Fetch a task given its identifier"""
     task = db.session.get(Task, id)
 
     if not task:
@@ -45,6 +48,7 @@ def get_task(id):
 
 @task_bp.route("/<int:id>", methods=["PUT"])
 def update_task(id):
+    """Update a task given its identifier"""
     task = db.session.get(Task, id)
 
     if not task:
@@ -68,6 +72,7 @@ def update_task(id):
 
 @task_bp.route("/<int:id>", methods=["DELETE"])
 def delete_task(id):
+    """Delete a task given its identifier"""
     task = db.session.get(Task, id)
 
     if not task:
